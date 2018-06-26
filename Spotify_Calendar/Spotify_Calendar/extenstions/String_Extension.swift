@@ -7,8 +7,9 @@
 //
 
 import Foundation
+
+// string extension that allows for the conversion of date and strings
 extension String {
-    
     static var dateFormatter : DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"

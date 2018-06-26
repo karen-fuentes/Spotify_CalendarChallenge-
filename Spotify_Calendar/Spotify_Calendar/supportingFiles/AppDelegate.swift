@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let window = self.window {
             window.backgroundColor = UIColor.white
             let nav = UINavigationController()
-            let mainView = CalendarView()
+            let mainView = CalendarViewController()
             nav.viewControllers = [mainView]
             window.rootViewController = nav
             window.makeKeyAndVisible()

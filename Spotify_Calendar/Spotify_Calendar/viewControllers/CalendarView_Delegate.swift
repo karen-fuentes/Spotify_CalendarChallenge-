@@ -8,23 +8,28 @@
 
 import UIKit
 
-extension CalendarView: UICollectionViewDelegate {
-    
+extension CalendarViewController: UICollectionViewDelegate {
+    // MARK: - Collection View Delegate Methods
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.backgroundColor = UIColor.red
         let lbl = cell?.subviews[1] as! UILabel
         lbl.textColor = UIColor.white
-        self.navigationController?.pushViewController(EventsTableViewController(), animated: true)
+        let eventsTBVC = EventsTableViewController()
+        
+        eventsTBVC.day = self.todaysDate
+        eventsTBVC.month = self.currentMonthIndex
+        eventsTBVC.year = self.currentYear
+        
+        self.navigationController?.pushViewController(eventsTBVC, animated: true)
     }
- 
 }
 
-extension CalendarView : UICollectionViewDataSource {
-    
+extension CalendarViewController : UICollectionViewDataSource {
+    // MARK: - Collection View Data Source Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return daysInAMonth[currentMonthIndex - 1] + firstWeekDayofMonth - 1
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -39,28 +44,23 @@ extension CalendarView : UICollectionViewDataSource {
         }
         cell.isUserInteractionEnabled = true
         cell.label.textColor = UIColor.white
-        
         return cell
     }
-    
 }
 
-extension CalendarView: UICollectionViewDelegateFlowLayout {
-    
+extension CalendarViewController: UICollectionViewDelegateFlowLayout {
+    // MARK: - CollectionView Flow layout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         let width = collectionView.frame.width/7 - 8
         let height: CGFloat = 40
         return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        
         return 8.0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        
         return 8.0
     }
 }

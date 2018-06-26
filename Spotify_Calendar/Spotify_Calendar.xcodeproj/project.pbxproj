@@ -13,8 +13,7 @@
 		C558843920D9EF0C0044ABD6 /* Spotify_CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558843820D9EF0C0044ABD6 /* Spotify_CalendarTests.swift */; };
 		C558844420DA229E0044ABD6 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558844320DA229E0044ABD6 /* MonthView.swift */; };
 		C558844620DA383A0044ABD6 /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558844520DA383A0044ABD6 /* WeekView.swift */; };
-		C558844820DA407D0044ABD6 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558844720DA407D0044ABD6 /* Style.swift */; };
-		C558844A20DA4DA50044ABD6 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558844920DA4DA50044ABD6 /* CalendarView.swift */; };
+		C558844A20DA4DA50044ABD6 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558844920DA4DA50044ABD6 /* CalendarViewController.swift */; };
 		C558844C20DAD5B90044ABD6 /* DateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558844B20DAD5B90044ABD6 /* DateCollectionViewCell.swift */; };
 		C558844E20DB1EC80044ABD6 /* Date_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558844D20DB1EC80044ABD6 /* Date_Extension.swift */; };
 		C558845020DB1F790044ABD6 /* String_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C558844F20DB1F790044ABD6 /* String_Extension.swift */; };
@@ -25,6 +24,7 @@
 		C5E4406420E2435900665CDB /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4406320E2435900665CDB /* APIRequestManager.swift */; };
 		C5E4406620E243E700665CDB /* EventAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4406520E243E700665CDB /* EventAPIClient.swift */; };
 		C5E4406820E2442E00665CDB /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4406720E2442E00665CDB /* Event.swift */; };
+		C5E4407120E2C15300665CDB /* EventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E4407020E2C15300665CDB /* EventsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,8 +48,7 @@
 		C558843A20D9EF0C0044ABD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C558844320DA229E0044ABD6 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
 		C558844520DA383A0044ABD6 /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
-		C558844720DA407D0044ABD6 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
-		C558844920DA4DA50044ABD6 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		C558844920DA4DA50044ABD6 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		C558844B20DAD5B90044ABD6 /* DateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionViewCell.swift; sourceTree = "<group>"; };
 		C558844D20DB1EC80044ABD6 /* Date_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date_Extension.swift; sourceTree = "<group>"; };
 		C558844F20DB1F790044ABD6 /* String_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String_Extension.swift; sourceTree = "<group>"; };
@@ -60,6 +59,7 @@
 		C5E4406320E2435900665CDB /* APIRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
 		C5E4406520E243E700665CDB /* EventAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAPIClient.swift; sourceTree = "<group>"; };
 		C5E4406720E2442E00665CDB /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		C5E4407020E2C15300665CDB /* EventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,8 +128,6 @@
 				C558844320DA229E0044ABD6 /* MonthView.swift */,
 				C558844520DA383A0044ABD6 /* WeekView.swift */,
 				C5E4406120E1D96500665CDB /* EventView.swift */,
-				C57474EF20E1B26400B156EC /* CalendarView_Delegate.swift */,
-				C558844920DA4DA50044ABD6 /* CalendarView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -139,6 +137,8 @@
 			children = (
 				C5E4405D20E1BD5800665CDB /* EventsTableViewController.swift */,
 				C5E4405F20E1D22E00665CDB /* AddEventsViewController.swift */,
+				C57474EF20E1B26400B156EC /* CalendarView_Delegate.swift */,
+				C558844920DA4DA50044ABD6 /* CalendarViewController.swift */,
 			);
 			path = viewControllers;
 			sourceTree = "<group>";
@@ -156,7 +156,6 @@
 			isa = PBXGroup;
 			children = (
 				C5E4406720E2442E00665CDB /* Event.swift */,
-				C558844720DA407D0044ABD6 /* Style.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -165,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				C558844B20DAD5B90044ABD6 /* DateCollectionViewCell.swift */,
+				C5E4407020E2C15300665CDB /* EventsTableViewCell.swift */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -295,15 +295,15 @@
 				C558844E20DB1EC80044ABD6 /* Date_Extension.swift in Sources */,
 				C5E4406220E1D96500665CDB /* EventView.swift in Sources */,
 				C5E4406820E2442E00665CDB /* Event.swift in Sources */,
-				C558844A20DA4DA50044ABD6 /* CalendarView.swift in Sources */,
+				C558844A20DA4DA50044ABD6 /* CalendarViewController.swift in Sources */,
 				C5E4406420E2435900665CDB /* APIRequestManager.swift in Sources */,
 				C57474F020E1B26400B156EC /* CalendarView_Delegate.swift in Sources */,
 				C558845020DB1F790044ABD6 /* String_Extension.swift in Sources */,
 				C558844420DA229E0044ABD6 /* MonthView.swift in Sources */,
 				C558842420D9EF0C0044ABD6 /* AppDelegate.swift in Sources */,
 				C5E4406620E243E700665CDB /* EventAPIClient.swift in Sources */,
+				C5E4407120E2C15300665CDB /* EventsTableViewCell.swift in Sources */,
 				C5E4405E20E1BD5800665CDB /* EventsTableViewController.swift in Sources */,
-				C558844820DA407D0044ABD6 /* Style.swift in Sources */,
 				C558844C20DAD5B90044ABD6 /* DateCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

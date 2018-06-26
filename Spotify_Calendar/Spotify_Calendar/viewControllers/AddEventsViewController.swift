@@ -28,9 +28,9 @@ class AddEventVC: UIViewController {
         addEventView.submitBtn.addTarget(self, action: #selector(saveTask), for: .touchUpInside)
         addEventView.closeBtn.addTarget(self, action: #selector(closeAddEvent), for: .touchUpInside)
         
-        self.day = 28
-        self.month = 6
-        self.year = 2018
+//        self.day = 28
+//        self.month = 6
+//        self.year = 2018
     }
     
     @objc private func saveTask() {
@@ -45,15 +45,26 @@ class AddEventVC: UIViewController {
         let compsEnd = Calendar.current.dateComponents(units, from: addEventView.endTime.date)
         let endTimeStr = "\(compsEnd.hour!):\(compsEnd.minute!)"
         
-        let eventToCreate = Event(_id: nil, title: addEventView.descriptionTxtField.text!, description: addEventView.descriptionTxtField.text!, startTime: addEventView.startTime.date.timeIntervalSince1970, endTime: addEventView.endTime.date.timeIntervalSince1970, day: day, month: month, year: year, startTimeStr: startTimeStr, endTimeStr: endTimeStr)
+        let eventToCreate = Event(_id: nil,
+                                  title: addEventView.titleTxtField.text!,
+                                  description: addEventView.descriptionTxtField.text!,
+                                  startTime: addEventView.startTime.date.timeIntervalSince1970,
+                                  endTime: addEventView.endTime.date.timeIntervalSince1970,
+                                  day: day,
+                                  month: month,
+                                  year: year,
+                                  startTimeStr: startTimeStr,
+                                  endTimeStr: endTimeStr)
+        
         EventsAPIClient.manager.createEvent(event: eventToCreate, completionHandler: { (response) in
             print((response as! HTTPURLResponse).statusCode)
             self.delegate?.didCreateNewEvent()
         }, errorHandler: { print($0) })
+        
         self.dismiss(animated: true, completion: nil)    }
     
     @objc private func closeAddEvent() {
-        self.dismiss(animated: true, completion: nil)
+       self.dismiss(animated: true, completion: nil)
     }
     
     private func setupViews() {

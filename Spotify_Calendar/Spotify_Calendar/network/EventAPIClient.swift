@@ -12,7 +12,9 @@ struct EventsAPIClient {
     private init() { }
     static let manager = EventsAPIClient()
     
+      // MARK: - POST Request
     func createEvent(event: Event, completionHandler: @escaping (URLResponse) -> Void, errorHandler: @escaping (Error) -> Void) {
+        
         let stringURL = "http://localhost:3033/events/"
         guard let url = URL(string: stringURL) else {
             errorHandler(AppError.badURL(str: stringURL))
@@ -23,12 +25,13 @@ struct EventsAPIClient {
         
         let postString = "title=\(event.title)&description=\(event.description)&startTime=\(event.startTime)&endTime=\(event.endTime)&day=\(event.day)&month=\(event.month)&year=\(event.year)&startTimeStr=\(event.startTimeStr)&endTimeStr=\(event.endTimeStr)"
         urlRequest.httpBody = postString.data(using: .utf8)
+        
         APIRequestManager.manager.performDataTask(with: urlRequest, completionResponse: { (response) in
             completionHandler(response)
         }, errorHandler: { print($0) })
-        
     }
     
+      // MARK: - GET Request (all events)
     func getAllEvents(completionHandler: @escaping ([Int:[Event]]) -> Void, errorHandler: @escaping (Error) -> Void) {
         let stringURL = "http://localhost:3033/events/"
         guard let url = URL(string: stringURL) else {
@@ -58,7 +61,7 @@ struct EventsAPIClient {
         APIRequestManager.manager.performDataTask(with: urlRequest, completionHandler: completion, errorHandler: errorHandler)
     }
     
-    
+      // MARK: - GET Request (single event)
     func getEventWith(id: String, completionHandler: @escaping (Event) -> Void, errorHandler: @escaping (Error) -> Void) {
         let stringURL = "http://localhost:3033/events/\(id)"
         guard let url = URL(string: stringURL) else {
@@ -78,7 +81,7 @@ struct EventsAPIClient {
         APIRequestManager.manager.performDataTask(with: urlRequest, completionHandler: completion, errorHandler: errorHandler)
     }
     
-    
+      // MARK: - DELETE Request
     func deleteEvent(event: Event, completionHandler: @escaping (URLResponse) -> Void, errorHandler: @escaping (Error) -> Void) {
         print(event._id!)
         let stringURL = "http://localhost:3033/events/\(event._id!)"

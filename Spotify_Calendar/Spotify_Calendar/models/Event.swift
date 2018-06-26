@@ -8,6 +8,8 @@
 
 import Foundation
 
+//Event is the container(object) that holds all the attributes(properties) that make
+//makes up an event
 struct Event: Codable {
     let _id: String?
     let title: String

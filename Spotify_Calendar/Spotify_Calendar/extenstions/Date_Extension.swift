@@ -7,6 +7,7 @@
 //
 
 import Foundation
+//extension on built in Date class to get weekdays and first of the month
 
 extension Date {
     var weekday: Int {

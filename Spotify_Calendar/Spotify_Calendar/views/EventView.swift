@@ -36,6 +36,8 @@ class AddEventView: UIView {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.backgroundColor = UIColor.blue
+        btn.layer.cornerRadius = 10
+        btn.clipsToBounds = true
         btn.setTitle("Submit", for: .normal)
         return btn
     }()
@@ -43,6 +45,10 @@ class AddEventView: UIView {
     lazy var closeBtn: UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.backgroundColor = UIColor.red
+        btn.setTitle("X", for: .normal)
+        btn.layer.cornerRadius = 5
+        btn.clipsToBounds = true
         return btn
     }()
     
@@ -97,10 +103,10 @@ class AddEventView: UIView {
         stackView.addArrangedSubview(closeBtn)
         
         
-//        addSubview(closeBtn)
-//        NSLayoutConstraint.activate([
-//            closeBtn.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
-//            closeBtn.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)])
+        addSubview(closeBtn)
+        NSLayoutConstraint.activate([
+            closeBtn.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
+            closeBtn.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)])
     }
         
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CalendarView: UIViewController, MonthViewDelegate {
+class CalendarViewController: UIViewController, MonthViewDelegate {
     
     var daysInAMonth = [31,28,31,30,31,30,31,31,30,31, 30, 31]
     var currentMonthIndex = 0
@@ -18,24 +18,24 @@ class CalendarView: UIViewController, MonthViewDelegate {
     var todaysDate = 0
     var firstWeekDayofMonth = 0
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "My Calendar"
         self.navigationController?.navigationBar.isTranslucent = false
-        self.view.backgroundColor = Style.backgroundColor
+        self.view.backgroundColor = UIColor.darkGray
         
-      initializeViews()
+        initializeViews()
         
     }
-
+    
+    // MARK: - View initialization
     func initializeViews() {
-        
         currentMonthIndex = Calendar.current.component(.month, from: Date())
         currentYear = Calendar.current.component(.year, from: Date())
         todaysDate = Calendar.current.component(.day, from: Date())
         firstWeekDayofMonth = getFirstWeekDay()
-
+        
         presentMonthIndex = currentMonthIndex
         presentYear = currentYear
         
@@ -43,7 +43,6 @@ class CalendarView: UIViewController, MonthViewDelegate {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(DateCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-        
     }
     
     func getFirstWeekDay() -> Int {
@@ -52,27 +51,26 @@ class CalendarView: UIViewController, MonthViewDelegate {
     }
     
     
-    
+    //implementing delegate method to check for changin months
     func didChangeMonth(monthIndex: Int, year: Int) {
         currentMonthIndex = monthIndex + 1
         currentYear = year
         
+        //leap year logic TODO:Refactor to make this more dynamic
         if (currentMonthIndex == 2)  && (currentYear % 4 == 0) {
             daysInAMonth[currentMonthIndex - 1 ] = 29
         }
-        
         if (currentMonthIndex == 2)  && (currentYear % 4 != 0) {
             daysInAMonth[currentMonthIndex - 1 ] = 28
         }
-       
         
         firstWeekDayofMonth = getFirstWeekDay()
         collectionView.reloadData()
-        
     }
-
+    
+    // MARK: - Setting up views via their constraint
+    
     func setUpViews() {
-        
         view.addSubview(monthView)
         let _ = [monthView.topAnchor.constraint(equalTo: self.view.topAnchor),
                  monthView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
@@ -94,23 +92,24 @@ class CalendarView: UIViewController, MonthViewDelegate {
                  collectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0),
                  collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
             ].map({$0.isActive = true})
-        
-        
     }
     
-    let weekdayView: WeekView = {
+    // MARK: - Setting up view
+    
+    //set up different components of the calendar view controller -- lazy var to only instantiate them when needed
+    lazy var weekdayView: WeekView = {
         let weekView = WeekView()
         weekView.translatesAutoresizingMaskIntoConstraints = false
         return weekView
     }()
     
-    let monthView: MonthView = {
+    lazy var monthView: MonthView = {
         let monthView = MonthView()
         monthView.translatesAutoresizingMaskIntoConstraints = false
         return monthView
     }()
     
-    let collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         

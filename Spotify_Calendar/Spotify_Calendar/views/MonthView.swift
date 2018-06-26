@@ -84,7 +84,7 @@ class MonthView: UIView {
     let monthLabel: UILabel = {
         let lbl = UILabel()
         lbl.text = "PLACEHOLDERTEXT"
-        lbl.textColor = Style.monthViewLblColor
+        lbl.textColor = UIColor.white
         lbl.textAlignment = .center
         lbl.font = UIFont.boldSystemFont(ofSize: 16)
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -94,7 +94,7 @@ class MonthView: UIView {
     let rightButton: UIButton = {
         let btn = UIButton()
         btn.setTitle(">", for: .normal)
-        btn.setTitleColor(Style.monthViewRightButtonColor, for: .normal)
+        btn.setTitleColor(UIColor.white, for: .normal)
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.addTarget(self, action: #selector(leftAndRightButtonAction(sender:)), for: .touchUpInside)
         return btn
@@ -102,7 +102,7 @@ class MonthView: UIView {
     let leftButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("<", for: .normal)
-        btn.setTitleColor(Style.monthViewLeftButtonColor, for: .normal)
+        btn.setTitleColor(UIColor.white, for: .normal)
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.addTarget(self, action: #selector(leftAndRightButtonAction(sender:)), for: .touchUpInside)
         return btn

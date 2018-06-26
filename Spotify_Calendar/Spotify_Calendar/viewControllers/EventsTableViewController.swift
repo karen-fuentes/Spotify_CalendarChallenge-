@@ -9,89 +9,82 @@
 import UIKit
 
 class EventsTableViewController: UITableViewController {
+    
+    var events = [Int: [Event]]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+
+    var day: Int?
+    var month: Int?
+    var year: Int? 
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         let addTaskBtn = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTask))
+        
         navigationItem.rightBarButtonItem = addTaskBtn
-  
-    }
+        
+        self.tableView.register(EventsTableViewCell.self, forCellReuseIdentifier: "event cell")
+        
+        loadEvents()
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        loadEvents()
+    }
+    
+
+    private func loadEvents() {
+        EventsAPIClient.manager.getAllEvents(completionHandler: {
+            self.events = $0
+        }, errorHandler: { print($0) })
+    }
+    
+    // MARK: - Table view data source
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let currentDay = day else {
+            return "Day Events"
+        }
+        return "June \(currentDay), 2018"
+    }
+    
+    
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let currentSelectedDay = self.day else {
+            return 0
+        }
+        return (events[currentSelectedDay] ?? []).count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let eventCell = tableView.dequeueReusableCell(withIdentifier: "event cell", for: indexPath) as! EventsTableViewCell
+        eventCell.setupViews()
+        guard let currentSelectedDay = self.day, let arrayEvents =  events[currentSelectedDay] else {
+            return UITableViewCell()
+        }
+        let event = arrayEvents[indexPath.row]
+        eventCell.label.text = event.title
+        return eventCell
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        EventsAPIClient.manager.deleteEvent(event: events[day!]![indexPath.row], completionHandler: { (response) in
+            self.loadEvents()
+        }, errorHandler: { print($0) })
+    }
+
+
     @objc private func addTask() {
         let addEventVC = AddEventVC()
-//        let year = calendarView.currentYear
-//        let month = calendarView.currentMonthIndex
-//        let day = calendarView.todaysDate
-//        addEventVC.addEventView.startTime.date = "\(year)-\(month)-\(day)".toDate!
-//        addEventVC.addEventView.endTime.date = "\(year)-\(month)-\(day)".toDate!
+        addEventVC.day = self.day
+        addEventVC.month = self.month
+        addEventVC.year = self.year
         navigationController?.present(addEventVC, animated: true, completion: nil)
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

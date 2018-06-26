@@ -20,13 +20,13 @@ router.post('/', (req, res, next) => {
         _id: new mongoose.Types.ObjectId(),
         title: req.body.title, 
         description: req.body.description, 
-        // startTime: parseFloat(req.body.startTime), 
-        // endTime: parseFloat(req.body.endTime), 
-        // day: parseInt(req.body.day), 
-        // month: parseInt(req.body.month), 
-        // year: parseInt(req.body.year),
-        // startTimeStr: req.body.startTimeStr,
-        // endTimeStr: req.body.endTimeStr
+        startTime: parseFloat(req.body.startTime), 
+        endTime: parseFloat(req.body.endTime), 
+        day: parseInt(req.body.day), 
+        month: parseInt(req.body.month), 
+        year: parseInt(req.body.year),
+        startTimeStr: req.body.startTimeStr,
+        endTimeStr: req.body.endTimeStr
     });
     event.save()
     .then(result => {

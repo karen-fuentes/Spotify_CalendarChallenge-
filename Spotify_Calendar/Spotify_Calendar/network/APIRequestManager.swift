@@ -7,6 +7,7 @@
 //
 import Foundation
 
+// MARK: Enum Error type
 enum AppError: Error {
     case noData
     case noResponse
@@ -16,9 +17,10 @@ enum AppError: Error {
     case otherError(rawError: Error)
 }
 
+// MARK: - API Request Manager
+//using singleton pattern
 class APIRequestManager {
     private init() {}
-    
     static let manager = APIRequestManager()
     private let urlSession = URLSession(configuration: URLSessionConfiguration.default)
     
@@ -34,9 +36,8 @@ class APIRequestManager {
                 }
                 completionHandler(data)
             }
-            }.resume()
+        }.resume()
     }
-    
     
     func performDataTask(with request: URLRequest, completionResponse: @escaping (URLResponse) -> Void, errorHandler: @escaping (Error) -> Void) {
         self.urlSession.dataTask(with: request){(data: Data?, response: URLResponse?, error: Error?) in
@@ -50,7 +51,7 @@ class APIRequestManager {
                 }
                 completionResponse(response)
             }
-            }.resume()
+        }.resume()
     }
     
 }
