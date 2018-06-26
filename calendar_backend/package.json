@@ -1,0 +1,19 @@
+{
+  "name": "calendar_backend",
+  "version": "1.0.0",
+  "description": "node.js restful api for calendar app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "karenfuentes",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongodb": "^3.0.10",
+    "mongoose": "^5.1.6",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.17.5"
+  }
+}

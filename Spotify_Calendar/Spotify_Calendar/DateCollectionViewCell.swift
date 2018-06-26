@@ -10,6 +10,7 @@ import UIKit
 
 class DateCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
+        
         super.init(frame: frame)
         self.backgroundColor = UIColor.clear
         layer.cornerRadius = 5
@@ -18,6 +19,7 @@ class DateCollectionViewCell: UICollectionViewCell {
     }
     
     required init?(coder aDecoder: NSCoder) {
+        
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -28,7 +30,7 @@ class DateCollectionViewCell: UICollectionViewCell {
                  label.leftAnchor.constraint(equalTo: self.leftAnchor),
                  label.rightAnchor.constraint(equalTo: self.rightAnchor),
                  label.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-                ].map({$0.isActive = true})
+            ].map({$0.isActive = true})
     }
     
     let label : UILabel = {
@@ -40,5 +42,4 @@ class DateCollectionViewCell: UICollectionViewCell {
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
-    
 }

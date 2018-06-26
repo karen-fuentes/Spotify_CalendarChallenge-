@@ -14,8 +14,8 @@ protocol MonthViewDelegate {
 
 class MonthView: UIView {
     
-   var monthArr = ["January", "February", "March", "April", "May", "June",
-                   "July", "August", "September", "October", "November", "December"]
+    var monthArr = ["January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"]
     var currentMonthIndex = 0
     var currentYear = 0
     var delegate : MonthViewDelegate?
@@ -26,7 +26,7 @@ class MonthView: UIView {
         
         currentMonthIndex = Calendar.current.component(.month, from: Date()) - 1
         currentYear = Calendar.current.component(.year, from: Date())
-
+        
         setUpViews()
     }
     
@@ -43,27 +43,27 @@ class MonthView: UIView {
                 currentMonthIndex = 0
                 currentYear += 1
             }
-        }
-            else {
-                currentMonthIndex -= 1
-                if currentMonthIndex < 0 {
-                    currentMonthIndex = 11
-                    currentYear -= 1
-                }
+        } else {
+            currentMonthIndex -= 1
+            
+            if currentMonthIndex < 0 {
+                currentMonthIndex = 11
+                currentYear -= 1
             }
+        }
         monthLabel.text = "\(monthArr[currentMonthIndex]) \(currentYear)"
         delegate?.didChangeMonth(monthIndex: currentMonthIndex, year: currentYear)
-        }
-
+    }
+    
     
     func setUpViews() {
         
         self.addSubview(monthLabel)
         let _ = [monthLabel.topAnchor.constraint(equalTo: self.topAnchor),
-               monthLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-               monthLabel.widthAnchor.constraint(equalToConstant: 150),
-               monthLabel.heightAnchor.constraint(equalTo: self.heightAnchor)
-               ].map({$0.isActive = true})
+                 monthLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                 monthLabel.widthAnchor.constraint(equalToConstant: 150),
+                 monthLabel.heightAnchor.constraint(equalTo: self.heightAnchor)
+            ].map({$0.isActive = true})
         monthLabel.text = "\(monthArr[currentMonthIndex]) \(currentYear)"
         
         self.addSubview(rightButton)
@@ -79,17 +79,17 @@ class MonthView: UIView {
                  leftButton.widthAnchor.constraint(equalToConstant: 50),
                  leftButton.heightAnchor.constraint(equalTo: self.heightAnchor)
             ].map({$0.isActive = true})
-
     }
-        let monthLabel: UILabel = {
-            let lbl = UILabel()
-            lbl.text = "PLACEHOLDERTEXT"
-            lbl.textColor = Style.monthViewLblColor
-            lbl.textAlignment = .center
-            lbl.font = UIFont.boldSystemFont(ofSize: 16)
-            lbl.translatesAutoresizingMaskIntoConstraints = false
-            return lbl
-        }()
+    
+    let monthLabel: UILabel = {
+        let lbl = UILabel()
+        lbl.text = "PLACEHOLDERTEXT"
+        lbl.textColor = Style.monthViewLblColor
+        lbl.textAlignment = .center
+        lbl.font = UIFont.boldSystemFont(ofSize: 16)
+        lbl.translatesAutoresizingMaskIntoConstraints = false
+        return lbl
+    }()
     
     let rightButton: UIButton = {
         let btn = UIButton()
@@ -107,12 +107,12 @@ class MonthView: UIView {
         btn.addTarget(self, action: #selector(leftAndRightButtonAction(sender:)), for: .touchUpInside)
         return btn
     }()
- 
+    
 }
-    
-    
-    
-    
+
+
+
+
 
 
 

@@ -9,7 +9,7 @@
 import UIKit
 
 class WeekView: UIView {
-
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,12 +28,12 @@ class WeekView: UIView {
                  stackView.leftAnchor.constraint(equalTo: self.leftAnchor),
                  stackView.rightAnchor.constraint(equalTo: self.rightAnchor),
                  stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-                ].map({$0.isActive = true})
+            ].map({$0.isActive = true})
         
         var daysArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
         
         for i in 0..<7 {
-          let lbl = UILabel()
+            let lbl = UILabel()
             lbl.text = daysArr[i]
             lbl.textAlignment = .center
             lbl.textColor = UIColor.white
