@@ -101,24 +101,13 @@
 		C558842220D9EF0C0044ABD6 /* Spotify_Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				C558842320D9EF0C0044ABD6 /* AppDelegate.swift */,
-				C558842A20D9EF0C0044ABD6 /* Assets.xcassets */,
-				C558842C20D9EF0C0044ABD6 /* LaunchScreen.storyboard */,
+				C5E4406E20E289DE00665CDB /* extenstions */,
+				C5E4406C20E2897B00665CDB /* models */,
+				C5E4406B20E2891E00665CDB /* network */,
+				C5E4406A20E288C100665CDB /* viewControllers */,
+				C5E4406920E2885000665CDB /* views */,
+				C5E4406F20E2908E00665CDB /* supportingFiles */,
 				C558842F20D9EF0C0044ABD6 /* Info.plist */,
-				C558844320DA229E0044ABD6 /* MonthView.swift */,
-				C5E4406320E2435900665CDB /* APIRequestManager.swift */,
-				C5E4406520E243E700665CDB /* EventAPIClient.swift */,
-				C5E4406720E2442E00665CDB /* Event.swift */,
-				C558844920DA4DA50044ABD6 /* CalendarView.swift */,
-				C57474EF20E1B26400B156EC /* CalendarView_Delegate.swift */,
-				C5E4405D20E1BD5800665CDB /* EventsTableViewController.swift */,
-				C558844D20DB1EC80044ABD6 /* Date_Extension.swift */,
-				C558844F20DB1F790044ABD6 /* String_Extension.swift */,
-				C558844B20DAD5B90044ABD6 /* DateCollectionViewCell.swift */,
-				C558844520DA383A0044ABD6 /* WeekView.swift */,
-				C558844720DA407D0044ABD6 /* Style.swift */,
-				C5E4405F20E1D22E00665CDB /* AddEventsViewController.swift */,
-				C5E4406120E1D96500665CDB /* EventView.swift */,
 			);
 			path = Spotify_Calendar;
 			sourceTree = "<group>";
@@ -130,6 +119,73 @@
 				C558843A20D9EF0C0044ABD6 /* Info.plist */,
 			);
 			path = Spotify_CalendarTests;
+			sourceTree = "<group>";
+		};
+		C5E4406920E2885000665CDB /* views */ = {
+			isa = PBXGroup;
+			children = (
+				C5E4406D20E289C900665CDB /* cells */,
+				C558844320DA229E0044ABD6 /* MonthView.swift */,
+				C558844520DA383A0044ABD6 /* WeekView.swift */,
+				C5E4406120E1D96500665CDB /* EventView.swift */,
+				C57474EF20E1B26400B156EC /* CalendarView_Delegate.swift */,
+				C558844920DA4DA50044ABD6 /* CalendarView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		C5E4406A20E288C100665CDB /* viewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C5E4405D20E1BD5800665CDB /* EventsTableViewController.swift */,
+				C5E4405F20E1D22E00665CDB /* AddEventsViewController.swift */,
+			);
+			path = viewControllers;
+			sourceTree = "<group>";
+		};
+		C5E4406B20E2891E00665CDB /* network */ = {
+			isa = PBXGroup;
+			children = (
+				C5E4406320E2435900665CDB /* APIRequestManager.swift */,
+				C5E4406520E243E700665CDB /* EventAPIClient.swift */,
+			);
+			path = network;
+			sourceTree = "<group>";
+		};
+		C5E4406C20E2897B00665CDB /* models */ = {
+			isa = PBXGroup;
+			children = (
+				C5E4406720E2442E00665CDB /* Event.swift */,
+				C558844720DA407D0044ABD6 /* Style.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		C5E4406D20E289C900665CDB /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				C558844B20DAD5B90044ABD6 /* DateCollectionViewCell.swift */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		C5E4406E20E289DE00665CDB /* extenstions */ = {
+			isa = PBXGroup;
+			children = (
+				C558844F20DB1F790044ABD6 /* String_Extension.swift */,
+				C558844D20DB1EC80044ABD6 /* Date_Extension.swift */,
+			);
+			path = extenstions;
+			sourceTree = "<group>";
+		};
+		C5E4406F20E2908E00665CDB /* supportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				C558842320D9EF0C0044ABD6 /* AppDelegate.swift */,
+				C558842A20D9EF0C0044ABD6 /* Assets.xcassets */,
+				C558842C20D9EF0C0044ABD6 /* LaunchScreen.storyboard */,
+			);
+			path = supportingFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
