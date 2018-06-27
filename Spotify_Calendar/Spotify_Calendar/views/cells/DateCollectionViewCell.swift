@@ -8,9 +8,10 @@
 
 import UIKit
 
+//collection view cell for calendar setup
 class DateCollectionViewCell: UICollectionViewCell {
+    
     override init(frame: CGRect) {
-        
         super.init(frame: frame)
         self.backgroundColor = UIColor.clear
         layer.cornerRadius = 5
@@ -19,12 +20,11 @@ class DateCollectionViewCell: UICollectionViewCell {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - set up views
     func setupViews() {
-        
         addSubview(label)
         let _ = [label.topAnchor.constraint(equalTo: self.topAnchor),
                  label.leftAnchor.constraint(equalTo: self.leftAnchor),

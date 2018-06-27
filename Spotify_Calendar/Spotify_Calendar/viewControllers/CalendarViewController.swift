@@ -20,16 +20,13 @@ class CalendarViewController: UIViewController, MonthViewDelegate {
     var todaysDate = 0
     var firstWeekDayofMonth = 0
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "My Calendar"
         self.navigationController?.navigationBar.isTranslucent = false
         self.view.backgroundColor = UIColor.darkGray
         self.dateString = "\(monthView.monthArr[currentMonthIndex]) \(selectedDay) \(currentYear)"
-        
         initializeViews()
-        
     }
     
     // MARK: - View initialization
@@ -48,13 +45,14 @@ class CalendarViewController: UIViewController, MonthViewDelegate {
         collectionView.register(DateCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
     }
     
+    //logic to get the first day the month starts
     func getFirstWeekDay() -> Int {
         let day = ("\(currentYear)-\(currentMonthIndex) - 01".date?.firstDayOfTheMonth.weekday)!
         return day
     }
     
     
-    //implementing delegate method to check for changin months
+    //implementing delegate method to check for changing months
     func didChangeMonth(monthIndex: Int, year: Int) {
         currentMonthIndex = monthIndex + 1
         currentYear = year
@@ -71,8 +69,9 @@ class CalendarViewController: UIViewController, MonthViewDelegate {
         collectionView.reloadData()
     }
     
-    // MARK: - Setting up views via their constraint
-    
+    // MARK: - Setting up
+    //1. adding subviews to main view
+    //2. then constraints
     func setUpViews() {
         view.addSubview(monthView)
         let _ = [monthView.topAnchor.constraint(equalTo: self.view.topAnchor),
@@ -99,6 +98,7 @@ class CalendarViewController: UIViewController, MonthViewDelegate {
     
     // MARK: - Setting up view
     //set up different components of the calendar view controller -- lazy var to only instantiate them when needed
+    
     lazy var weekdayView: WeekView = {
         let weekView = WeekView()
         weekView.translatesAutoresizingMaskIntoConstraints = false
@@ -112,6 +112,7 @@ class CalendarViewController: UIViewController, MonthViewDelegate {
     }()
     
     lazy var collectionView: UICollectionView = {
+        
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         

@@ -8,7 +8,11 @@
 
 import UIKit
 
+//NOTE: Extension of CalendarViewController to declutter the class
+//      contains flowlayout, collectionViewDelegate, collectionViewDataSource methods
+
 extension CalendarViewController: UICollectionViewDelegate {
+    
     // MARK: - Collection View Delegate Methods
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -24,12 +28,12 @@ extension CalendarViewController: UICollectionViewDelegate {
         eventsTBVC.year = self.currentYear
         eventsTBVC.dateString = "\(monthView.monthArr[currentMonthIndex - 1] ) \(selectedDay), \(currentYear)"
         
-        
         self.navigationController?.pushViewController(eventsTBVC, animated: true)
     }
 }
 
 extension CalendarViewController : UICollectionViewDataSource {
+    
     // MARK: - Collection View Data Source Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return daysInAMonth[currentMonthIndex - 1] + firstWeekDayofMonth - 1
@@ -44,8 +48,8 @@ extension CalendarViewController : UICollectionViewDataSource {
             let calcDate = indexPath.row - firstWeekDayofMonth + 2
             cell.isHidden = false
             cell.label.text = "\(calcDate)"
-          
         }
+        
         cell.isUserInteractionEnabled = true
         cell.label.textColor = UIColor.white
         return cell
@@ -53,6 +57,7 @@ extension CalendarViewController : UICollectionViewDataSource {
 }
 
 extension CalendarViewController: UICollectionViewDelegateFlowLayout {
+    
     // MARK: - CollectionView Flow layout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width/7 - 8

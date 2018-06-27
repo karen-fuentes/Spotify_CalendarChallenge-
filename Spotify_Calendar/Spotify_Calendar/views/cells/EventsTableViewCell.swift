@@ -7,18 +7,18 @@
 //
 
 import UIKit
-
+//table view cell for Events table view controller
 class EventsTableViewCell: UITableViewCell {
 
     func setupViews() {
         self.backgroundColor = UIColor.clear
         layer.cornerRadius = 5
         layer.masksToBounds = true
-        
         setupStack()
     }
     
-    func setupStack() {
+    // MARK: - set up stack
+    private func setupStack() {
         addSubview(stackView)
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -46,6 +46,7 @@ class EventsTableViewCell: UITableViewCell {
 
     }
     
+    // MARK: - views
    lazy var titlelabel : UILabel = {
         let lbl = UILabel()
         lbl.textAlignment = .center

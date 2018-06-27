@@ -19,23 +19,28 @@ class AddEventVC: UIViewController {
     var day: Int?
     var month: Int?
     var year: Int?
-
+    
     weak var delegate: CreateEventViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        addEventView.submitBtn.addTarget(self, action: #selector(saveTask), for: .touchUpInside)
+        addEventView.submitBtn.addTarget(self, action: #selector(saveEvent), for: .touchUpInside)
         addEventView.closeBtn.addTarget(self, action: #selector(closeAddEvent), for: .touchUpInside)
-
+        
     }
     
-    @objc private func saveTask() {
+    // MARK: - Save Event Function:
+    //1. Creates event based properties that are passed like  day, month, year
+    //2. then takes input from view for (startTime, endTime, title)
+    //3.creates event object
+    //4. makes post request
+    @objc private func saveEvent() {
         guard let day = day, let month = month, let year = year else {
             print("error here")
             return
         }
-
+        
         let units: Set<Calendar.Component> = [.hour, .minute]
         let compsStart = Calendar.current.dateComponents(units, from: addEventView.startTime.date)
         let startTimeStr = "\(compsStart.hour!):\(compsStart.minute!)"
@@ -58,12 +63,17 @@ class AddEventVC: UIViewController {
             self.delegate?.didCreateNewEvent()
         }, errorHandler: { print($0) })
         
-        self.dismiss(animated: true, completion: nil)    }
-    
-    @objc private func closeAddEvent() {
-       self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
+        
     }
     
+    // MARK: - CloseAddEvent
+    //Dismisses view controller when cancel button is pressed
+    @objc private func closeAddEvent() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - Setup Views
     private func setupViews() {
         view.addSubview(addEventView)
         addEventView.translatesAutoresizingMaskIntoConstraints = false

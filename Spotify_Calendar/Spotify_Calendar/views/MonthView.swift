@@ -33,7 +33,12 @@ class MonthView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    // MARK: - left and riht button pressesd
+    //1. checks if the sender is left / right button
+    //2. checks if the month number is greater than 11
+    //3. updates view appropriately then lets delegate method know the
+    //   changes that occured
     @objc func leftAndRightButtonAction(sender: UIButton) {
         if sender == rightButton {
             
@@ -56,8 +61,8 @@ class MonthView: UIView {
     }
     
     
+    // MARK: - set up views
     func setUpViews() {
-        
         self.addSubview(monthLabel)
         let _ = [monthLabel.topAnchor.constraint(equalTo: self.topAnchor),
                  monthLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -81,7 +86,8 @@ class MonthView: UIView {
             ].map({$0.isActive = true})
     }
     
-    let monthLabel: UILabel = {
+    // MARK: - all sub view configurations
+    lazy var monthLabel: UILabel = {
         let lbl = UILabel()
         lbl.text = "PLACEHOLDERTEXT"
         lbl.textColor = UIColor.white
@@ -91,7 +97,7 @@ class MonthView: UIView {
         return lbl
     }()
     
-    let rightButton: UIButton = {
+    lazy var rightButton: UIButton = {
         let btn = UIButton()
         btn.setTitle(">", for: .normal)
         btn.setTitleColor(UIColor.white, for: .normal)
@@ -99,7 +105,8 @@ class MonthView: UIView {
         btn.addTarget(self, action: #selector(leftAndRightButtonAction(sender:)), for: .touchUpInside)
         return btn
     }()
-    let leftButton: UIButton = {
+    
+    lazy var leftButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("<", for: .normal)
         btn.setTitleColor(UIColor.white, for: .normal)
@@ -109,10 +116,3 @@ class MonthView: UIView {
     }()
     
 }
-
-
-
-
-
-
-

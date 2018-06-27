@@ -7,9 +7,8 @@
 //
 
 import UIKit
-
+//class that sets up what the week looks like in out calendar view controller
 class WeekView: UIView {
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,8 +20,8 @@ class WeekView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - set up views
     func setUpViews() {
-        
         addSubview(stackView)
         let _ = [stackView.topAnchor.constraint(equalTo: self.topAnchor),
                  stackView.leftAnchor.constraint(equalTo: self.leftAnchor),
@@ -41,7 +40,7 @@ class WeekView: UIView {
         }
     }
     
-    let stackView: UIStackView = {
+    lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false

@@ -9,36 +9,32 @@
 import UIKit
 
 class DailyEventTableViewController: UITableViewController {
-    
+    //maps date and events ascociated with that date
     var events = [Int: [Event]]() {
         didSet {
             self.tableView.reloadData()
         }
     }
-    
     var day: Int?
     var month: Int?
     var year: Int?
     var dateString: String?
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         let addTaskBtn = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTask))
-        
         navigationItem.rightBarButtonItem = addTaskBtn
-        
         self.tableView.register(EventsTableViewCell.self, forCellReuseIdentifier: "event cell")
-        
         loadEvents()
-        
     }
     
+    //whenever the view appears to reload data... allows for automatic update after post
     override func viewDidAppear(_ animated: Bool) {
         loadEvents()
     }
     
-    
+    // MARK: - load events
+    //makes get reques
     private func loadEvents() {
         EventsAPIClient.manager.getAllEvents(completionHandler: {
             self.events = $0
@@ -52,8 +48,6 @@ class DailyEventTableViewController: UITableViewController {
         }
         return currentDay
     }
-    
-    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let currentSelectedDay = self.day else {
@@ -76,14 +70,16 @@ class DailyEventTableViewController: UITableViewController {
         return eventCell
     }
     
-    
+    // MARK: - Table view delegate
+    //makes delete request
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         EventsAPIClient.manager.deleteEvent(event: events[day!]![indexPath.row], completionHandler: { (response) in
             self.loadEvents()
         }, errorHandler: { print($0) })
     }
     
-    
+    // MARK: - Table view data source
+    //button action that transition to the add event view controller
     @objc private func addTask() {
         let addEventVC = AddEventVC()
         addEventVC.day = self.day

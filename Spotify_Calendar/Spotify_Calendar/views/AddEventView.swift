@@ -8,8 +8,51 @@
 
 import UIKit
 
+//view that allows user to input information that will be captured to later
+// on make a pull request
+
 class AddEventView: UIView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
+        self.layer.borderWidth = 2.0
+        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.cornerRadius = 5
+        self.backgroundColor = UIColor.white
+    }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - set up views
+    private func setupViews() {
+        addSubview(stackView)
+        NSLayoutConstraint.activate([
+            stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor)])
+        
+        stackView.addArrangedSubview(titleTxtField)
+        stackView.addArrangedSubview(descriptionTxtField)
+        NSLayoutConstraint.activate([
+            descriptionTxtField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9),
+            descriptionTxtField.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.15)])
+        NSLayoutConstraint.activate([
+            titleTxtField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9),
+            titleTxtField.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.15)])
+        
+        stackView.addArrangedSubview(startTime)
+        stackView.addArrangedSubview(endTime)
+        stackView.addArrangedSubview(submitBtn)
+        stackView.addArrangedSubview(closeBtn)
+        
+        addSubview(closeBtn)
+        NSLayoutConstraint.activate([
+            closeBtn.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
+            closeBtn.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)])
+    }
+    
+    // MARK: - all sub view configurations
     lazy var startTime: UIDatePicker = {
         let dp = UIDatePicker()
         dp.translatesAutoresizingMaskIntoConstraints = false
@@ -68,45 +111,4 @@ class AddEventView: UIView {
         stView.spacing   = 0.0
         return stView
     }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
-        self.layer.borderWidth = 2.0
-        self.layer.borderColor = UIColor.black.cgColor
-        self.layer.cornerRadius = 5
-        self.backgroundColor = UIColor.white
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupViews() {
-        addSubview(stackView)
-        NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor)])
-        
-        stackView.addArrangedSubview(titleTxtField)
-        stackView.addArrangedSubview(descriptionTxtField)
-        NSLayoutConstraint.activate([
-            descriptionTxtField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9),
-            descriptionTxtField.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.15)])
-        NSLayoutConstraint.activate([
-            titleTxtField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9),
-            titleTxtField.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.15)])
-        
-        stackView.addArrangedSubview(startTime)
-        stackView.addArrangedSubview(endTime)
-        stackView.addArrangedSubview(submitBtn)
-        stackView.addArrangedSubview(closeBtn)
-        
-        
-        addSubview(closeBtn)
-        NSLayoutConstraint.activate([
-            closeBtn.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
-            closeBtn.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8)])
-    }
-        
 }
