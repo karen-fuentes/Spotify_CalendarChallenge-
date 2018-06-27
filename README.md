@@ -57,7 +57,7 @@ postman get request
 
 ![get request](images/testOnPostman.png) 
 
-##Thank you 
+## Thank you 
 
 It was a pleasure to build this app. It was the first time I dabbled in Node.js and MongoDB so this was a fun challenge! I hope you enjoy Thank you! 
 
