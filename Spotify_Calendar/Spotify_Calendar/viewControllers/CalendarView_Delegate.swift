@@ -16,11 +16,14 @@ extension CalendarViewController: UICollectionViewDelegate {
         cell?.backgroundColor = UIColor.red
         let lbl = cell?.subviews[1] as! UILabel
         lbl.textColor = UIColor.white
-        let eventsTBVC = EventsTableViewController()
+        let eventsTBVC = DailyEventTableViewController()
+        self.selectedDay = indexPath.row - firstWeekDayofMonth + 2
         
-        eventsTBVC.day = self.todaysDate
+        eventsTBVC.day = self.selectedDay
         eventsTBVC.month = self.currentMonthIndex
         eventsTBVC.year = self.currentYear
+        eventsTBVC.dateString = "\(monthView.monthArr[currentMonthIndex - 1] ) \(selectedDay), \(currentYear)"
+        
         
         self.navigationController?.pushViewController(eventsTBVC, animated: true)
     }
@@ -41,6 +44,7 @@ extension CalendarViewController : UICollectionViewDataSource {
             let calcDate = indexPath.row - firstWeekDayofMonth + 2
             cell.isHidden = false
             cell.label.text = "\(calcDate)"
+          
         }
         cell.isUserInteractionEnabled = true
         cell.label.textColor = UIColor.white

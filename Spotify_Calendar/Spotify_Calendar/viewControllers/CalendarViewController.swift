@@ -12,8 +12,10 @@ class CalendarViewController: UIViewController, MonthViewDelegate {
     
     var daysInAMonth = [31,28,31,30,31,30,31,31,30,31, 30, 31]
     var currentMonthIndex = 0
+    var dateString = ""
     var currentYear = 0
     var presentMonthIndex = 0
+    var selectedDay = 0
     var presentYear = 0
     var todaysDate = 0
     var firstWeekDayofMonth = 0
@@ -24,6 +26,7 @@ class CalendarViewController: UIViewController, MonthViewDelegate {
         self.title = "My Calendar"
         self.navigationController?.navigationBar.isTranslucent = false
         self.view.backgroundColor = UIColor.darkGray
+        self.dateString = "\(monthView.monthArr[currentMonthIndex]) \(selectedDay) \(currentYear)"
         
         initializeViews()
         
@@ -95,7 +98,6 @@ class CalendarViewController: UIViewController, MonthViewDelegate {
     }
     
     // MARK: - Setting up view
-    
     //set up different components of the calendar view controller -- lazy var to only instantiate them when needed
     lazy var weekdayView: WeekView = {
         let weekView = WeekView()

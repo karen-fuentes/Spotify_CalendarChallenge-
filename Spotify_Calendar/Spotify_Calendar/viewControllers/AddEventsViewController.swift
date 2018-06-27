@@ -27,10 +27,7 @@ class AddEventVC: UIViewController {
         setupViews()
         addEventView.submitBtn.addTarget(self, action: #selector(saveTask), for: .touchUpInside)
         addEventView.closeBtn.addTarget(self, action: #selector(closeAddEvent), for: .touchUpInside)
-        
-//        self.day = 28
-//        self.month = 6
-//        self.year = 2018
+
     }
     
     @objc private func saveTask() {

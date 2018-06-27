@@ -1,25 +1,26 @@
 //
-//  EventsTableViewController.swift
+//  DailyEventsTableViewCell.swift
 //  Spotify_Calendar
 //
-//  Created by Karen Fuentes on 6/25/18.
+//  Created by Karen Fuentes on 6/27/18.
 //  Copyright © 2018 Karen Fuentes. All rights reserved.
 //
 
 import UIKit
 
-class EventsTableViewController: UITableViewController {
+class DailyEventTableViewController: UITableViewController {
     
     var events = [Int: [Event]]() {
         didSet {
             self.tableView.reloadData()
         }
     }
-
+    
     var day: Int?
     var month: Int?
-    var year: Int? 
-
+    var year: Int?
+    var dateString: String?
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -30,14 +31,14 @@ class EventsTableViewController: UITableViewController {
         self.tableView.register(EventsTableViewCell.self, forCellReuseIdentifier: "event cell")
         
         loadEvents()
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         loadEvents()
     }
     
-
+    
     private func loadEvents() {
         EventsAPIClient.manager.getAllEvents(completionHandler: {
             self.events = $0
@@ -46,10 +47,10 @@ class EventsTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let currentDay = day else {
+        guard let currentDay = dateString else {
             return "Day Events"
         }
-        return "June \(currentDay), 2018"
+        return currentDay
     }
     
     
@@ -68,7 +69,10 @@ class EventsTableViewController: UITableViewController {
             return UITableViewCell()
         }
         let event = arrayEvents[indexPath.row]
-        eventCell.label.text = event.title
+        eventCell.titlelabel.text = "Event: \(event.title)"
+        eventCell.descriptionlabel.text = " Description: \(event.description)"
+        eventCell.startTimeLabel.text = "StartTime:\(event.startTimeStr)"
+        eventCell.endTimelabel.text = "EndTime: \(event.endTimeStr) "
         return eventCell
     }
     
@@ -78,8 +82,8 @@ class EventsTableViewController: UITableViewController {
             self.loadEvents()
         }, errorHandler: { print($0) })
     }
-
-
+    
+    
     @objc private func addTask() {
         let addEventVC = AddEventVC()
         addEventVC.day = self.day
